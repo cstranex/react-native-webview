@@ -1139,6 +1139,9 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
       }
 
       for (int i = 0; i < permissions.size(); i++) {
+        if (permissions.get(i).equals(PermissionRequest.RESOURCE_PROTECTED_MEDIA_ID)) {
+          grantedPermissions.add(PermissionRequest.RESOURCE_PROTECTED_MEDIA_ID);
+        }
         if (ContextCompat.checkSelfPermission(mReactContext, permissions.get(i)) != PackageManager.PERMISSION_GRANTED) {
           continue;
         }
@@ -1146,8 +1149,6 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
           grantedPermissions.add(PermissionRequest.RESOURCE_AUDIO_CAPTURE);
         } else if (permissions.get(i).equals(Manifest.permission.CAMERA)) {
           grantedPermissions.add(PermissionRequest.RESOURCE_VIDEO_CAPTURE);
-        } else if (permissions.get(i).equals(PermissionRequest.RESOURCE_PROTECTED_MEDIA_ID)) {
-          grantedPermissions.add(PermissionRequest.RESOURCE_PROTECTED_MEDIA_ID);
         }
       }
 
